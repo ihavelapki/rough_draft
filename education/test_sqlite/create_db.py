@@ -34,3 +34,25 @@ with con:
                 data = con.execute("SELECT * FROM users")
                 for row in data:
                     print(row)
+
+current_dir = os.getcwd()
+users_scheme_path = os.path.join(current_dir, 'schemas', 'users.sql')
+with open(users_scheme_path) as f:
+    con.executescript(f.read())
+
+cur = con.cursor()
+
+cur.execute("INSERT INTO users (user_email, user_name) VALUES (?, ?)",
+            ('keka@mail.ru', 'Keka')
+            )
+
+cur.execute("INSERT INTO comments (title, content, user_id) VALUES (?, ?, ?)",
+            ('kek', 'lol cheburek', 1)
+            )
+
+cur.execute("INSERT INTO comments (title, content, user_id) VALUES (?, ?, ?)",
+            ('kek2', 'lol bez chebureka', 1)
+            )
+
+con.commit()
+con.close()
