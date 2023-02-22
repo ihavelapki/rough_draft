@@ -22,7 +22,7 @@ def get_comment(comment_id):
     return comment
 
 
-@afisha.route('/')
+@afisha.route('/afisha')
 def index():
     conn = get_db_connection()
     comments = conn.execute('SELECT * FROM comments').fetchall()
@@ -50,7 +50,7 @@ def create():
                          (title, content, 1))
             conn.commit()
             conn.close()
-            return redirect(url_for('index'))
+            return redirect(url_for('afisha.index'))
 
     return render_template('create.html')
 
@@ -72,6 +72,6 @@ def edit(comment_id):
                          (title, content, comment_id))
             conn.commit()
             conn.close()
-            return redirect(url_for('index'))
+            return redirect(url_for('afisha.index'))
 
     return render_template('edit.html', comment=comment)

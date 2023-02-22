@@ -7,3 +7,8 @@ auth = Blueprint('auth', __name__)
 def login():
     return "<p>Login<p>"
 
+
+@auth.route('/sign-up')
+def signup():
+    return "<p>sign-up<p>"
+
