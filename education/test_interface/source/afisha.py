@@ -1,9 +1,9 @@
-from flask import Flask, render_template, request, url_for, flash, redirect
+from flask import Blueprint, render_template, request, url_for, flash, redirect
 import sqlite3 as sql
 from werkzeug.exceptions import abort
 
-app = Flask(__name__)
-app.config['SECRET_KEY'] = 'Orion123'
+
+afisha = Blueprint('afisha', __name__)
 
 
 def get_db_connection():
@@ -22,7 +22,7 @@ def get_comment(comment_id):
     return comment
 
 
-@app.route('/')
+@afisha.route('/')
 def index():
     conn = get_db_connection()
     comments = conn.execute('SELECT * FROM comments').fetchall()
@@ -30,13 +30,13 @@ def index():
     return render_template('index.html', comments=comments)
 
 
-@app.route('/<int:comment_id>')
+@afisha.route('/<int:comment_id>')
 def view_comment(comment_id):
     comment = get_comment(comment_id)
     return render_template('comment.html', comment=comment)
 
 
-@app.route('/create', methods=('GET', 'POST'))
+@afisha.route('/create', methods=('GET', 'POST'))
 def create():
     if request.method == 'POST':
         title = request.form['title']
@@ -55,7 +55,7 @@ def create():
     return render_template('create.html')
 
 
-@app.route('/<int:comment_id>/edit', methods=('GET', 'POST'))
+@afisha.route('/<int:comment_id>/edit', methods=('GET', 'POST'))
 def edit(comment_id):
     comment = get_comment(comment_id)
 
@@ -75,7 +75,3 @@ def edit(comment_id):
             return redirect(url_for('index'))
 
     return render_template('edit.html', comment=comment)
-
-
-if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=8000)

@@ -3,11 +3,11 @@
 {% block content %}
     <h1>{% block title %} KEK {% endblock %}</h1>
     {% for comment in comments %}
-        <a href="{{ url_for('view_comment', comment_id=comment['comment_id']) }}">
+        <a href="{{ url_for('afisha.view_comment', comment_id=comment['comment_id']) }}">
             <h2>{{ comment['title'] }}</h2>
         </a>
         <span class="badge badge-primary">{{ comment['created'] }}</span>
-        <a href="{{ url_for('edit', comment_id=comment['comment_id']) }}">
+        <a href="{{ url_for('afisha.edit', comment_id=comment['comment_id']) }}">
             <span class="badge badge-warning">Edit</span>
         </a>
         <hr>
