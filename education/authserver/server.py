@@ -1,5 +1,5 @@
 from education.authserver import create_app
-from config import FlaskConfig, DB_NAME
+from config import FlaskConfig
 
 app = create_app(FlaskConfig)
 
