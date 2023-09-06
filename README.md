@@ -16,6 +16,18 @@
 ### Планируемые технологии 
 - Docker
 - Nginx
+- ApacheKafka
+- RabbitMQ
+- Django
+- Kuber
+- Oauth2
+- FastAPI
+- Swagger
+- Asyncio
+- Git
+- Ansible
+- PostgreSQL
+- 
 
 
 # Составляющие

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Video Streaming Service</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="app">
+      {{ message }}
+    </div>
+    <div id="app">
+      <video-player></video-player>
+    </div>
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            message: 'Hello Vue!'
+          }
+        }
+      })
+      app.mount('#app')
+    </script>
+  </body>
+</html>

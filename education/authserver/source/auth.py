@@ -1,3 +1,4 @@
+print('auth')
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from education.authserver.models import User, UserInfo
 from werkzeug.security import generate_password_hash, check_password_hash

@@ -1,3 +1,4 @@
+print('src init:', __name__, __file__)
 from os import path
 from flask import Flask
 
@@ -10,14 +11,15 @@ db = SQLAlchemy()
 
 
 def create_app(config):
+    print('create app', __name__, __file__)
     app = Flask(__name__)
     app.instance_path = path.join(path.dirname(__file__), 'data')
     app.config.from_object(config)
     db.init_app(app)
-
+    print('create app before import bp', __name__, __file__)
     from .source.auth import auth
     from .source.view import view
-
+    print('create app after import bp', __name__, __file__)
     app.register_blueprint(view, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
 

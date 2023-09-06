@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru" >
+  <head>
+    <meta charset="UTF-8">
+    <title>Колесо баланса на Vue.js</title>
+
+  <body>
+    <!-- основной блок, внутри которого будет всё остальное -->
+    <div id="demo">
+      <!-- рисуем многоугольник в области заданного размера -->
+      <svg width="250" height="250">
+        <polygraph :stats="stats"></polygraph>
+      </svg>
+
+      <!-- управление колесом баланса -->
+      <div v-for="stat in stats">
+        <!-- выводим название элемента -->
+        <label>{{stat.label}}</label>
+        <!-- показываем шкалу -->
+        <input type="range" v-model="stat.value" min="0" max="100" />
+        <!-- выводим текущее значение элемента -->
+        <span>{{stat.value}}</span>
+        <!-- кнопка для удаления элемента -->
+        <button @click="remove(stat)" class="remove">❌</button>
+      </div>
+
+      <!-- форма для добавления нового элемента на колесо баланса -->
+      <form id="add">
+        <!-- поле ввода -->
+        <input name="newlabel" v-model="newLabel" />
+        <!-- кнопка -->
+        <button @click="add">Добавить направление</button>
+      </form>
+
+      <!-- выводим сбоку все элементы и их значения -->
+      <pre id="raw">{{ stats }}</pre>
+    </div>
+    <!-- подключаем Vue.js -->
+    <script src="https://unpkg.com/vue@2"></script>
+  </body>
+</html>

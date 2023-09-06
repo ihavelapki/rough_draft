@@ -1,17 +1,17 @@
-print('import models', __name__)
-from education.authserver import db
+print('import data', __name__, __file__)
+from kekauth.src import db
 from flask_login import UserMixin
 from sqlalchemy.sql import func
 
 
-class Note(db.Model):
+class Notes(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     data = db.Column(db.String(1000))
     creation_date = db.Column(db.DateTime(timezone=True), default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 
-class User(db.Model, UserMixin):
+class Users(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(150), unique=True)
     password = db.Column(db.String(150), unique=True)
@@ -20,7 +20,7 @@ class User(db.Model, UserMixin):
     user_info = db.relationship('UserInfo')
 
 
-class UserInfo(db.Model):
+class UsersInfo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(150))
     second_name = db.Column(db.String(150))
