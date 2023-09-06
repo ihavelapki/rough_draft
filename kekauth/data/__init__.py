@@ -8,7 +8,7 @@ class Notes(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     data = db.Column(db.String(1000))
     creation_date = db.Column(db.DateTime(timezone=True), default=func.now())
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
 
 class Users(db.Model, UserMixin):
@@ -16,8 +16,8 @@ class Users(db.Model, UserMixin):
     email = db.Column(db.String(150), unique=True)
     password = db.Column(db.String(150), unique=True)
     creation_date = db.Column(db.DateTime(timezone=True), default=func.now())
-    notes = db.relationship('Note')
-    user_info = db.relationship('UserInfo')
+    notes = db.relationship('Notes')
+    user_info = db.relationship('UsersInfo')
 
 
 class UsersInfo(db.Model):
@@ -27,5 +27,5 @@ class UsersInfo(db.Model):
     user_address = db.Column(db.String(150))
     user_avatar = db.Column(db.String(150))
     user_note = db.Column(db.String(150))
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     creation_date = db.Column(db.DateTime(timezone=True), default=func.now())
